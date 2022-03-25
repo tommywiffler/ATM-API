@@ -1,21 +1,50 @@
 # ATM-API
 
-Problem Statement
+## Run Program
+
+Necessary Tools Installed
+- Git
+- Golang
+
+To run this program, clone this repository to your local machine, navigate to this repository in your working directory, and run following command in your terminal:
+```
+go run main.go
+```
+
+## Test
+
+To test the endpoints, use an API Client such as Postman.
+
+The URI definitions and methods are listed in the /handlers/routes.go file.
+
+Each endpoint in your API Client should begin with:
+```
+http://127.0.0.1:8080/
+```
+Append the relevant URI definition for the endpoint you wish to access.
+
+2 Example Users with Accounts have been made for testing.
+
+For User Login, the request body should read:
+```
+{
+    "id": "1234"
+}
+```
+or 
+```
+{
+    "id": "4141"
+}
+```
+
+To view the user's bank balance, place the user's 4 digit id at the end of the Bank Balance endpoint.
 
 
-We would like you to implement a web service containing REST API for an ATM. The use cases that you must fulfill are:
-A customer can login to the ATM account by providing a 4 digit PIN number
-A customer can view their current balance
-A customer can deposit money
-A customer can withdraw money
-
-Instructions
-We expect you to spend no more than 2 hours on this exercise, but we do value a complete solution. The requirements are left purposefully open-ended. Some aspects you may choose to focus on include:
-Data persistence
-Authentication
-Concurrency
-Fault-tolerance, etc.
-
-Please consider that your solution should contain instructions on how to build, test, and execute your solution. UI is not necessary - simply being able to use any API client (e.g. Postman) to demonstrate your solution is adequate.
-
-You may implement this in any language of your choosing: Java, Go, etc. Please submit the results as a link to public GitHub or Bitbucket repository.
+For the Bank Transaction related endpoints, the request body should read:
+```
+{
+    "owner": "1234",
+    "balance": <amount to deposit or withdraw>
+}
+```
