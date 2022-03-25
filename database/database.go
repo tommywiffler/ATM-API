@@ -37,8 +37,8 @@ func migrateTables(db *gorm.DB) error {
 }
 
 func popTables(db *gorm.DB) error {
-	var accounts = []models.Account{{Owner: "1234", Balance: 5000}, {Owner: "4141", Balance: 350}}
-	var users = []models.User{{ID: "1234", FirstName: "Peter", LastName: "Parker"}, {ID: "4141", FirstName: "Bruce", LastName: "Wayne"}}
+	var accounts = []models.Account{{Number: "000001", Balance: 5000}, {Number: "000002", Balance: 350}}
+	var users = []models.User{{ID: "1234", FirstName: "Peter", LastName: "Parker", AccNumber: "000001"}, {ID: "4141", FirstName: "Bruce", LastName: "Wayne", AccNumber: "000002"}}
 
 	err := db.Create(&accounts).Error
 	if err != nil {

@@ -7,12 +7,12 @@ import (
 )
 
 type Account struct {
-	Owner   string `json:"owner"`
+	Number  string `json:"number"`
 	Balance int    `json:"balance"`
 }
 
 func (a *Account) GetBalance(db *gorm.DB, owner string) (*Account, error) {
-	err := db.Debug().Where("owner = ?", owner).Take(&a).Error
+	err := db.Debug().Where("number = ?", owner).Take(&a).Error
 	return a, err
 }
 
@@ -27,11 +27,11 @@ func (a *Account) Deposit(db *gorm.DB, owner string) (*Account, error) {
 		newBal := currBal + a.Balance
 
 		newAcc := Account{
-			Owner:   a.Owner,
+			Number:  a.Number,
 			Balance: newBal,
 		}
 
-		err = tx.Debug().Model(&newAcc).Where("owner = ?", newAcc.Owner).Update("balance", newAcc.Balance).Error
+		err = tx.Debug().Model(&newAcc).Where("number = ?", newAcc.Number).Update("balance", newAcc.Balance).Error
 		return err
 	})
 
@@ -55,11 +55,11 @@ func (a *Account) Withdraw(db *gorm.DB, owner string) (*Account, error) {
 		}
 
 		newAcc := Account{
-			Owner:   a.Owner,
+			Number:  a.Number,
 			Balance: newBal,
 		}
 
-		err = tx.Debug().Model(&newAcc).Where("owner = ?", newAcc.Owner).Update("balance", newAcc.Balance).Error
+		err = tx.Debug().Model(&newAcc).Where("number = ?", newAcc.Number).Update("balance", newAcc.Balance).Error
 		return err
 	})
 

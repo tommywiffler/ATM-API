@@ -39,7 +39,7 @@ func Deposit(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	balanceResult, err := account.Deposit(database.DB, account.Owner)
+	balanceResult, err := account.Deposit(database.DB, account.Number)
 	if err != nil {
 		responses.ERROR(w, http.StatusInternalServerError, fmt.Errorf("unable to process deposit, see error: %v", err))
 		return
@@ -61,7 +61,7 @@ func Withdraw(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	balanceResult, err := account.Withdraw(database.DB, account.Owner)
+	balanceResult, err := account.Withdraw(database.DB, account.Number)
 	if err != nil {
 		responses.ERROR(w, http.StatusInternalServerError, fmt.Errorf("unable to process withdrawal, see error: %v", err))
 		return

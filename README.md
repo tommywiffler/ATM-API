@@ -23,7 +23,7 @@ http://127.0.0.1:8080/
 ```
 Append the relevant URI definition for the endpoint you wish to access.
 
-2 Example Users with Accounts have been made for testing.
+2 Example Users with Accounts have been made for testing. The sample data is hardcoded into the database.go file.
 
 For User Login, the request body should read:
 ```
@@ -38,13 +38,13 @@ or
 }
 ```
 
-To view the user's bank balance, place the user's 4 digit id at the end of the Bank Balance endpoint.
+To view the user's bank balance, place the user's 6 digit account number at the end of the Bank Balance endpoint.
 
 
 For the Bank Transaction related endpoints, the request body should read:
 ```
 {
-    "owner": "1234",
+    "number": "<AccNumber returned from user login>",
     "balance": <amount to deposit or withdraw>
 }
 ```
